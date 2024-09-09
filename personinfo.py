@@ -1,8 +1,8 @@
-personer = {}
+personer_dict = {}
 
 # person? 
 # -> namn, personnummer, ålder, kön, längd, vikt, favoritsaker
-personer.update(
+personer_dict.update(
     {'199901015555': 
         {'namn': 'Lina',
         'ålder': '22',
@@ -26,9 +26,9 @@ personer.update(
 while True:
     personnummer = input('Ange personnummer: ')
     # ------------------- Uppdaterar en person ---------------------
-    if personnummer in personer.keys():
+    if personnummer in personer_dict.keys():
         # print('Personen med det personnummret finns redan!!')
-        hämtad_person = personer[personnummer]
+        hämtad_person = personer_dict[personnummer]
         print('---- Person -----')
         for key, val in hämtad_person.items():
             print(f"{key} -> {val}")
@@ -76,7 +76,10 @@ while True:
                         print('Saken fanns inte bland favoritsaker!!!')
 
                 elif menyval == '8':
-                    pass
+                    if input('Är du säker på att du vill ta bort personen? (yes/no)') == 'yes':
+                        print(personer_dict.pop(personnummer))
+                        break
+
                 elif menyval == '9':
                     break
                 else:
@@ -84,6 +87,7 @@ while True:
 
     # ------------------- Skapar en ny person ---------------------
     else:
+        print('--------- Skapa en person ---------')
         namn = input('Ange namn: ')
         ålder = input('Ange ålder:')
         vikt = input('Ange vikt: ')
@@ -99,7 +103,7 @@ while True:
             else:
                 break
         
-        personer[personnummer] = {
+        personer_dict[personnummer] = {
             "namn":namn,
             "ålder":ålder,
             "vikt":vikt,
@@ -111,5 +115,5 @@ while True:
         if input('Vill du fortsätta? (y/n): ') == "n":
             break
     
-print(personer)
+print(personer_dict)
     
